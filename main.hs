@@ -13,7 +13,7 @@ processTwoThrows a b = undefined
 processOneThrow :: ([Char], Int, Int) -> Bool -> (Int, Int, Int)
 processOneThrow (['x'], spa, str) bonus = (calculateOneThrowScore 10 spa str bonus, str ,1)
 processOneThrow ([n], spa, str) bonus
- | isDigit n = (calculateOneThrowScore (digitToInt n) spa str bonus, decraseUntilZero spa, decraseUntilZero str)
+ | isDigit n = (calculateOneThrowScore (digitToInt n) spa str bonus, str, 0)
  -- TODO
 
 calculateOneThrowScore :: Int -> Int -> Int -> Bool -> Int
