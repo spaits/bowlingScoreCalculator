@@ -3,10 +3,11 @@ import Data.Char
 calculateScore :: [Char] -> Int
 calculateScore l = undefined
 
-processFrames :: [[Char]] -> Int -> Int -> Int -> Int
-processFrames [] _ _ _ = 0
-processFrames (x:xs) spa str 0 = undefined
-processFrames (x:xs) spa str n = undefined
+processFrames :: [[Char]] -> (Int, Int, Int) -> Int
+processFrames [] _ = 0
+processFrames (x:xs) (spa, str, n) = (fst4 last) + (processFrames xs (tripleFromLastThree last))
+ where
+  last = processFrame (x, spa, str, n) 
 
 processFrame :: ([Char], Int, Int, Int) -> (Int, Int, Int, Int)
 processFrame f@([o], spa, str, n) = processOneThrow f
@@ -40,3 +41,16 @@ decraseUntilZero :: Int -> Int
 decraseUntilZero 0 = 0
 decraseUntilZero n = n - 1
 
+fst4 :: (a, b, c, d) -> a
+fst4 (x, _, _, _) = x
+
+tripleFromLastThree :: (a, b, c, d) -> (b, c, d)
+tripleFromLastThree (_, x, y, z) = (x, y, z)
+
+splitOn :: Eq a => [a] -> a -> [[a]]
+splitOn [] _ = [[]]
+splitOn (x:xs) c
+ | x /= c = [[x] ++ recRes!!0] ++ (drop 1 recRes)
+ | otherwise = [[]] ++ recRes
+ where
+  recRes = splitOn xs c
