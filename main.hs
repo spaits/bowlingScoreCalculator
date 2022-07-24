@@ -3,6 +3,11 @@ import Data.Char
 calculateScore :: [Char] -> Int
 calculateScore l = undefined
 
+processFrames :: [[Char]] -> Int -> Int -> Int -> Int
+processFrames [] _ _ _ = 0
+processFrames (x:xs) spa str 0 = undefined
+processFrames (x:xs) spa str n = undefined
+
 processFrame :: ([Char], Int, Int) -> Bool -> (Int, Int, Int)
 processFrame f@([o], spa, str) bonus = processOneThrow f bonus
 processFrame fl@([f,s], spa, str) False = processTwoThrows fl
