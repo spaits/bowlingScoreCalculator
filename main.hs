@@ -1,7 +1,7 @@
 import Data.Char
 
 calculateScore :: [Char] -> Int
-calculateScore l = undefined
+calculateScore l = processFrames (splitOn l ' ') (0, 0, 10)
 
 processFrames :: [[Char]] -> (Int, Int, Int) -> Int
 processFrames [] _ = 0
@@ -26,7 +26,7 @@ processTwoThrows ([a, b], spa, str, n)
   firstThrow = digitToInt a
 
 processOneThrow :: ([Char], Int, Int, Int) -> (Int, Int, Int, Int)
-processOneThrow (['x'], spa, str, n)  = (calculateOneThrowScore 10 spa str n, str , 1, decraseUntilZero n)
+processOneThrow (['x'], spa, str, n)  = (calculateOneThrowScore 10 spa str n, str , if n == 0 then 0 else 1, decraseUntilZero n)
 processOneThrow ([o], spa, str, n) 
  | isDigit o = (calculateOneThrowScore (digitToInt o) spa str n, str, 0, decraseUntilZero n)
  -- TODO
