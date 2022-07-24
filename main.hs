@@ -4,12 +4,12 @@ calculateScore :: [Char] -> Int
 calculateScore l = undefined
 
 processFrame :: ([Char], Int, Int) -> Bool -> (Int, Int, Int)
-processFrame (fl@[o], spa, str) bonus = processOneThrow (o, spa, str) bonus
+processFrame f@([o], spa, str) bonus = processOneThrow f bonus
 processFrame (fl@[f,s], spa, str) bonus = undefined
 
-processOneThrow :: (Char, Int, Int) -> Bool -> (Int, Int, Int)
-processOneThrow ('x', spa, str) bonus = (calculateOneThrowScore 10 spa str bonus, decraseUntilZero spa,(decraseUntilZero str) + 1)
-processOneThrow (n, spa, str) bonus
+processOneThrow :: ([Char], Int, Int) -> Bool -> (Int, Int, Int)
+processOneThrow (['x'], spa, str) bonus = (calculateOneThrowScore 10 spa str bonus, decraseUntilZero spa,(decraseUntilZero str) + 1)
+processOneThrow ([n], spa, str) bonus
  | isDigit n = (calculateOneThrowScore (digitToInt n) spa str bonus, decraseUntilZero spa, decraseUntilZero str)
  -- TODO
 
