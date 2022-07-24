@@ -5,7 +5,7 @@ calculateScore l = undefined
 
 processFrame :: ([Char], Int, Int) -> Bool -> (Int, Int, Int)
 processFrame f@([o], spa, str) bonus = processOneThrow f bonus
-processFrame (fl@[f,s], spa, str) False = undefined
+processFrame fl@([f,s], spa, str) False = processTwoThrows fl
 --TODO
 
 processTwoThrows :: ([Char], Int, Int) -> (Int, Int, Int)
@@ -21,8 +21,8 @@ processTwoThrows ([a, b], spa, str)
 
 processOneThrow :: ([Char], Int, Int) -> Bool -> (Int, Int, Int)
 processOneThrow (['x'], spa, str) bonus = (calculateOneThrowScore 10 spa str bonus, str ,1)
-processOneThrow ([n], spa, str) bonus
- | isDigit n = (calculateOneThrowScore (digitToInt n) spa str bonus, str, 0)
+processOneThrow ([n], spa, str) True
+ | isDigit n = (calculateOneThrowScore (digitToInt n) spa str True, str, 0)
  -- TODO
 
 calculateOneThrowScore :: Int -> Int -> Int -> Bool -> Int
