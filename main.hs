@@ -24,12 +24,14 @@ processTwoThrows ([a, b], spa, str, n)
  where
   sumThrow = firstThrow + digitToInt b 
   firstThrow = digitToInt a
+processTwoThrows _ = error "Error in processTwoThrows: A throw has to be a number!"
 
 processOneThrow :: ([Char], Int, Int, Int) -> (Int, Int, Int, Int)
 processOneThrow (['x'], spa, str, n)  = (calculateOneThrowScore 10 spa str n, str , signum n, decraseUntilZero n)
-processOneThrow ([o], spa, str, n) 
- | isDigit o = (calculateOneThrowScore (digitToInt o) spa str n, str, 0, decraseUntilZero n)
+processOneThrow ([o], spa, str, 0) 
+ | isDigit o = (calculateOneThrowScore (digitToInt o) spa str 0, str, 0, 0)
  | otherwise = error "Error in processOneThrow: A throw has to be a number"
+processOneThrow _ = error "Error in processOneThrow: "
 
 calculateOneThrowScore :: Int -> Int -> Int -> Int -> Int
 calculateOneThrowScore scr spa str n = ((signum n) + spa + str) * scr
