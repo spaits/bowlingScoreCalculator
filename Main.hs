@@ -1,5 +1,13 @@
 import Data.Char
+
+import System.Environment
+
 import ExtendedUtils
+
+main :: IO()
+main = do
+         args <- getArgs
+         print (calculateScore (args!!0))
 
 calculateScore :: [Char] -> Int
 calculateScore l = processFrames (splitOn l ' ') (0, 0, 10)
@@ -39,5 +47,3 @@ calculateOneThrowScore scr spa str n = ((signum n) + spa + str) * scr
 
 calculateTwoThrowsScore :: Int -> Int -> Int -> Int -> Int
 calculateTwoThrowsScore sum first spa str = (1 + str) * sum + first * spa
-
-
