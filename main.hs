@@ -31,7 +31,7 @@ processOneThrow (['x'], spa, str, n)  = (calculateOneThrowScore 10 spa str n, st
 processOneThrow ([o], spa, str, 0) 
  | isDigit o = (calculateOneThrowScore (digitToInt o) spa str 0, str, 0, 0)
  | otherwise = error "Error in processOneThrow: A throw has to be a number"
-processOneThrow _ = error "Error in processOneThrow: "
+processOneThrow _ = error "Error in processOneThrow: You can have single throw only in the bonus rounds!"
 
 calculateOneThrowScore :: Int -> Int -> Int -> Int -> Int
 calculateOneThrowScore scr spa str n = ((signum n) + spa + str) * scr
@@ -56,10 +56,3 @@ splitOn (x:xs) c
  | otherwise = [[]] ++ recRes
  where
   recRes = splitOn xs c
-
-isValidInput :: [Char] -> Bool
-isValidInput l = undefined
-
-isValid :: [[Char]] -> Int -> Bool
-isValid [] _ = True
-isValid (x:xs) n = undefined
